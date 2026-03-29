@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SYNAPS-F v3.1 | Adaptive Semantic Space Data Protocol</title>
+    <meta name="description"
+        content="SYNAPS-F v3.1: AI tabanlı semantik katmanlı uzay veri iletişim protokolü. TUA Astro Hackathon 2026 projesi.">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header class="hero">
+        <div class="container">
+            <div class="hero-badge animate-in">
+                <span class="dot"></span>
+                TUA ASTRO HACKATHON 2026
+            </div>
+            <h1 class="animate-in delay-1">SYNAPS-F</h1>
+            <p class="subtitle animate-in delay-2">Adaptive Semantic Space Link — SYNAPS-F v3.1</p>
+
+            <div class="hero-stats animate-in delay-4">
+                <div class="hero-stat">
+                    <div class="value" id="stat-compression">0x</div>
+                    <div class="label">Sıkıştırma Oranı</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="value" id="stat-psnr">0 dB</div>
+                    <div class="label">PSNR Kalite</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="value" id="stat-ssim">0.0000</div>
+                    <div class="label">SSIM Skoru</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="value" id="stat-bandwidth">0%</div>
+                    <div class="label">Bant Genişliği Tasarrufu</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="architecture-section" id="architecture">
+        <div class="container">
+            <div class="section-title">
+                <div class="accent-line"></div>
+                <h2>Triple Layer Architecture</h2>
+                <p>Semantik Katmanlı Veri İletişim Mimarisi</p>
+            </div>
+
+            <div class="arch-diagram">
+                <div class="layer-card l1" id="layer-l1">
+                    <div class="layer-tag">Layer 1 — Semantic Base</div>
+                    <div class="layer-name">Semantik İskelet</div>
+                    <div class="layer-desc">Bölge sınıflandırma ve AI algoritmaları ile oluşturulan anlamsal harita.
+                        Sadece yapısal bilgi iletilir.</div>
+                    <div class="layer-size" id="l1-size">~4 KB</div>
+                    <div class="size-label">İletim Boyutu (Orijinal: 192 KB)</div>
+                    <div class="progress-bar">
+                        <div class="fill" id="l1-progress" style="width: 0%"></div>
+                    </div>
+                </div>
+
+                <div class="arch-arrow">→</div>
+
+                <div class="layer-card l2" id="layer-l2">
+                    <div class="layer-tag">Layer 2 — Neural Residual</div>
+                    <div class="layer-name">Artık Fark (Residual)</div>
+                    <div class="layer-desc">AI tahmininin hata haritası. Yalnızca modelin öngöremediği piksel farkları
+                        ZLIB ile sıkıştırılıp iletilir.</div>
+                    <div class="layer-size" id="l2-size">~15 KB</div>
+                    <div class="size-label">İletim Boyutu (Koşullu)</div>
+                    <div class="progress-bar">
+                        <div class="fill" id="l2-progress" style="width: 0%"></div>
+                    </div>
+                </div>
+
+                <div class="arch-arrow">→</div>
+
+                <div class="layer-card l3" id="layer-l3">
+                    <div class="layer-tag">Layer 3 — AI Reconstruction</div>
+                    <div class="layer-name">Tam Rekonstrüksiyon</div>
+                    <div class="layer-desc">Yer istasyonunda L1 + L2 verisinden generative AI ile tam kaliteli görüntü
+                        sentezlenir ve self-healing uygulanır.</div>
+                    <div class="layer-size" id="l3-size">192 KB</div>
+                    <div class="size-label">Çıktı (L1+L2 ile ~19 KB iletildi)</div>
+                    <div class="progress-bar">
+                        <div class="fill" id="l3-progress" style="width: 0%"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="simulation-section" id="simulation">
+        <div class="container">
+            <div class="section-title">
+                <div class="accent-line"></div>
+                <h2>Canlı Simülasyon (Mission Control)</h2>
+                <p>Otonom protokol karar ve rekonstrüksiyon paneli</p>
+            </div>
+
+            <div class="api-panel glass-card" style="margin-bottom: 20px; padding: 20px;">
+                <h3
+                    style="color: var(--accent-cyan); margin-top: 0; margin-bottom: 15px; font-size: 1.1rem; display: flex; align-items: center; font-family: var(--font-display);">
+                    <span class="pulse-dot"
+                        style="display:inline-block; width:10px; height:10px; background:var(--accent-red); border-radius:50%; margin-right:10px; animation: pulse 1.5s infinite;"></span>
+                    UPLINK: Canlı Uydu Veri Bağı (API Downlink)
+                </h3>
+
+                <div class="api-buttons" style="display: flex; gap: 15px; margin-bottom: 15px;">
+                    <button id="btn-api-nasa" class="btn btn-outline"
+                        style="flex: 1; border: 1px solid #ff6b2c; color: #ff6b2c; background: rgba(255, 107, 44, 0.1); padding: 12px; border-radius: 8px; cursor: pointer; font-family: 'Orbitron', sans-serif; transition: all 0.3s; font-weight: 600;">
+                        🚀 [NASA] Mastcam-Z API (Mars)
+                    </button>
+                    <button id="btn-api-tua" class="btn btn-outline"
+                        style="flex: 1; border: 1px solid #00e5ff; color: #00e5ff; background: rgba(0, 229, 255, 0.1); padding: 12px; border-radius: 8px; cursor: pointer; font-family: 'Orbitron', sans-serif; transition: all 0.3s; font-weight: 600;">
+                        🌍 [TUA] Göktürk-2 API (Dünya Gözlem)
+                    </button>
+                </div>
+
+                <div id="api-gallery" class="gallery-grid">
+                </div>
+            </div>
+
+            <div class="upload-zone" id="upload-zone" onclick="document.getElementById('file-input').click()">
+                <input type="file" id="file-input" accept="image/*" style="display:none"
+                    onchange="dashboard.handleImageUpload(event)">
+                <div class="upload-icon">📁</div>
+                <div class="upload-title">Lokal Dosya Yükle</div>
+                <div class="upload-desc">Kendi uzay görüntünüzü test etmek için sürükleyip bırakın veya tıklayın</div>
+                <div class="upload-formats">JPG, PNG, WEBP — Maks. 10MB</div>
+                <div class="upload-preview" id="upload-preview" style="display:none">
+                    <img id="preview-img" alt="Yüklenen görüntü">
+                    <div class="upload-loaded" id="upload-loaded-text">✓ Görüntü yüklendi</div>
+                </div>
+            </div>
+
+            <div class="controls-bar">
+                <button class="btn btn-primary" id="btn-start" onclick="dashboard.startSimulation()">
+                    ▶ SİMÜLASYONU BAŞLAT
+                </button>
+                <div class="control-group" style="display:flex; gap:10px; align-items:center;">
+                    <select id="mode-selector" class="select-modern"
+                        style="background:#0f172a; color:#0ff; border:1px solid #0ff; padding:10px; border-radius:4px; font-family:Orbitron; outline: none; cursor:pointer;">
+                        <option value="tactical">Mod 1: Taktiksel AI (L1+L2)</option>
+                        <option value="lossless">Mod 2: SYNAPS-Lossless (Kayıpsız)</option>
+                        <option value="latent">Mod 3: SYNAPS-Latent (.sfn Vektör)</option>
+                    </select>
+                    <div id="sliders-container"
+                        style="display:flex; gap:15px; align-items:center; background: rgba(0,0,0,0.3); padding: 5px 15px; border-radius: 6px; border: 1px solid var(--border-dim);">
+                        <div class="slider-group" id="q-factor-group" title="L2 Niceleme Kalitesi"
+                            style="display:flex; align-items:center; gap:8px; color:#aaa; font-size:12px; font-weight:600;">
+                            <span>Q-Faktör:</span>
+                            <input type="range" id="q-factor-slider" min="1" max="20" value="5"
+                                style="width:70px; cursor:pointer;">
+                        </div>
+                        <div class="slider-group" id="noise-group" title="Radyasyon Gürültüsü %"
+                            style="display:flex; align-items:center; gap:8px; color:#aaa; font-size:12px; font-weight:600;">
+                            <span style="color:#ff4444;">Radyasyon (Noise):</span>
+                            <input type="range" id="noise-slider" min="0" max="20" value="0"
+                                style="width:70px; accent-color:#ff4444; cursor:pointer;">
+                        </div>
+                    </div>
+                </div>
+                <button class="btn btn-secondary" id="btn-reset" onclick="dashboard.resetSimulation()">
+                    ↺ SIFIRLA
+                </button>
+                <div class="status-indicator" style="margin-left:auto;">
+                    <span class="status-dot green" id="status-dot"></span>
+                    <span id="status-text">SİSTEM HAZIR</span>
+                </div>
+            </div>
+
+            <div class="sim-grid">
+                <div class="sim-panel">
+                    <div class="sim-panel-header">
+                        <span class="panel-label">Orijinal Görüntü</span>
+                        <span class="panel-badge badge-original">RAW DATA</span>
+                    </div>
+                    <div class="sim-canvas-wrap">
+                        <canvas id="canvas-original" width="256" height="256"></canvas>
+                    </div>
+                </div>
+
+                <div class="sim-panel">
+                    <div class="sim-panel-header">
+                        <span class="panel-label">L1 — Semantik İskelet</span>
+                        <span class="panel-badge badge-l1">ENCODE</span>
+                    </div>
+                    <div class="sim-canvas-wrap">
+                        <canvas id="canvas-l1" width="256" height="256"></canvas>
+                    </div>
+                </div>
+
+                <div class="sim-panel">
+                    <div class="sim-panel-header">
+                        <span class="panel-label">L2 — Artık Fark</span>
+                        <span class="panel-badge badge-l2">RESIDUAL</span>
+                    </div>
+                    <div class="sim-canvas-wrap">
+                        <canvas id="canvas-l2" width="256" height="256"></canvas>
+                    </div>
+                </div>
+
+                <div class="sim-panel">
+                    <div class="sim-panel-header">
+                        <span class="panel-label">L3 — Rekonstrüksiyon</span>
+                        <span class="panel-badge badge-l3">DECODE</span>
+                    </div>
+                    <div class="sim-canvas-wrap">
+                        <canvas id="canvas-l3" width="256" height="256"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <div class="log-console" id="log-console">
+                <div class="log-line">
+                    <span class="log-time">[00:00:00]</span>
+                    <span class="log-msg info">SYNAPS-F v3.1 Mission Control initialized. Yer istasyonu bağlantısı
+                        aktif.</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="metrics-section" id="metrics">
+        <div class="container">
+            <div class="section-title">
+                <div class="accent-line"></div>
+                <h2>Performans Metrikleri</h2>
+                <p>Bilimsel ölçüm ve karşılaştırma sonuçları</p>
+            </div>
+
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-gauge">
+                        <svg viewBox="0 0 36 36">
+                            <circle class="gauge-bg" cx="18" cy="18" r="15.9"></circle>
+                            <circle class="gauge-fill" id="gauge-psnr" cx="18" cy="18" r="15.9"
+                                stroke="var(--accent-cyan)" stroke-dasharray="100" stroke-dashoffset="100"></circle>
+                        </svg>
+                        <span class="gauge-value" id="gauge-psnr-val">0</span>
+                    </div>
+                    <div class="metric-label">PSNR (dB)</div>
+                    <div class="metric-desc">Peak Signal-to-Noise Ratio</div>
+                </div>
+
+                <div class="metric-card">
+                    <div class="metric-gauge">
+                        <svg viewBox="0 0 36 36">
+                            <circle class="gauge-bg" cx="18" cy="18" r="15.9"></circle>
+                            <circle class="gauge-fill" id="gauge-ssim" cx="18" cy="18" r="15.9"
+                                stroke="var(--accent-green)" stroke-dasharray="100" stroke-dashoffset="100"></circle>
+                        </svg>
+                        <span class="gauge-value" id="gauge-ssim-val">0</span>
+                    </div>
+                    <div class="metric-label">SSIM</div>
+                    <div class="metric-desc">Structural Similarity Index</div>
+                </div>
+
+                <div class="metric-card">
+                    <div class="metric-gauge">
+                        <svg viewBox="0 0 36 36">
+                            <circle class="gauge-bg" cx="18" cy="18" r="15.9"></circle>
+                            <circle class="gauge-fill" id="gauge-comp" cx="18" cy="18" r="15.9"
+                                stroke="var(--accent-orange)" stroke-dasharray="100" stroke-dashoffset="100"></circle>
+                        </svg>
+                        <span class="gauge-value" id="gauge-comp-val">0x</span>
+                    </div>
+                    <div class="metric-label">Sıkıştırma Oranı</div>
+                    <div class="metric-desc">ZLIB Entropy Compression</div>
+                </div>
+
+                <div class="metric-card">
+                    <div class="metric-gauge">
+                        <svg viewBox="0 0 36 36">
+                            <circle class="gauge-bg" cx="18" cy="18" r="15.9"></circle>
+                            <circle class="gauge-fill" id="gauge-bw" cx="18" cy="18" r="15.9"
+                                stroke="var(--accent-purple)" stroke-dasharray="100" stroke-dashoffset="100"></circle>
+                        </svg>
+                        <span class="gauge-value" id="gauge-bw-val">0%</span>
+                    </div>
+                    <div class="metric-label">Bant Genişliği Tasarrufu</div>
+                    <div class="metric-desc">vs. Geleneksel İletim</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="verify-section" id="verify">
+        <div class="container">
+            <div class="section-title">
+                <div class="accent-line"></div>
+                <h2>Self-Healing & Verify Modülü</h2>
+                <p>AI tabanlı radyasyon onarımı ve veri bütünlüğü doğrulama sistemi</p>
+            </div>
+
+            <div class="verify-grid">
+                <div class="heatmap-panel">
+                    <div class="panel-header">
+                        <h3>🔥 Güvenilirlik Heatmap'i</h3>
+                        <div class="status-indicator">
+                            <span class="status-dot cyan"></span>
+                            <span>AKTİF</span>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <canvas id="canvas-heatmap" width="400" height="256"></canvas>
+                    </div>
+                </div>
+
+                <div class="verify-stats">
+                    <div class="verify-stat-card">
+                        <div class="stat-icon green">✓</div>
+                        <div>
+                            <div class="stat-value" id="verify-accuracy">0%</div>
+                            <div class="stat-label">Doğrulama Başarısı</div>
+                        </div>
+                    </div>
+                    <div class="verify-stat-card">
+                        <div class="stat-icon cyan">🧠</div>
+                        <div>
+                            <div class="stat-value" id="verify-confidence">0%</div>
+                            <div class="stat-label">AI Güven Skoru</div>
+                        </div>
+                    </div>
+                    <div class="verify-stat-card">
+                        <div class="stat-icon orange">⚠</div>
+                        <div>
+                            <div class="stat-value" id="verify-anomalies">0</div>
+                            <div class="stat-label">Onarılan Anomali / Bozulma</div>
+                        </div>
+                    </div>
+                    <div class="verify-stat-card">
+                        <div class="stat-icon purple">📡</div>
+                        <div>
+                            <div class="stat-value" id="verify-latency">0 ms</div>
+                            <div class="stat-label">Görev Gecikmesi (Latency)</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-brand">SYNAPS-F v3.1</div>
+            <p class="footer-sub">
+                TUA Astro Hackathon 2026 — Uydu Sistemleri Kategorisi<br>
+                Adaptive Semantic Space Link — Neural Residual Compression Protocol
+            </p>
+        </div>
+    </footer>
+
+    <script src="app.js?v=3.1"></script>
+</body>
+
+</html>
